@@ -1,0 +1,99 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductsController;
+// use App\Http\Middleware\NotCustomer;
+use App\Http\Controllers\admin\ProductsController as adminProducts;
+use App\Http\Controllers\admin\CategoriesController;
+use App\Http\Controllers\admin\OrdersController as adminOrders;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\admin\UsersController as adminUsers;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BasketsController;
+use App\Http\Controllers\OrdersController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::prefix('/products')->group(function(){
+    Route::get('/card', [ProductsController::class, 'index']);
+    Route::get('/{id}', [ProductsController::class, 'customised']);
+    Route::get('', [ProductsController::class, 'customised']);
+    Route::post('', [ProductsController::class, 'customised']);
+//    Route::get('/search', [ProductsController::class, 'search']);
+
+
+});
+
+// Route::get('/admin', [adminProducts::class, 'index'])->middleware(['notCustomer']);
+
+Route::prefix('/admin/products')->middleware(['notCustomer'])->group(function(){
+	Route::get('', [adminProducts::class, 'index']);
+	Route::get('/edit/{id}', [adminProducts::class, 'edit']);
+//	Route::get('/drop', [adminProducts::class, 'drop']);
+	Route::post('/edit/{id}', [adminProducts::class, 'update']);
+	Route::get('/create', [adminProducts::class, 'create'])->middleware(['operator']);
+	Route::post('/create', [adminProducts::class, 'save']);
+	Route::post('/delete/{id}', [adminProducts::class, 'delete'])->middleware(['operator']);
+
+});
+
+//Route::prefix('/admin/categories')->middleware(['notCustomer'])->group(function(){
+//	Route::get('', [CategoriesController::class, 'index']);
+//	Route::get('/create', [CategoriesController::class, 'create'])->middleware(['operator']);
+//	Route::post('/create', [CategoriesController::class, 'save']);
+//	Route::get('/edit/{id}', [CategoriesController::class, 'edit']);
+//	Route::post('/edit/{id}', [CategoriesController::class, 'update']);
+//	Route::post('/delete/{id}', [CategoriesController::class, 'delete'])->middleware(['operator']);
+//});
+
+Route::prefix('/admin/users')->middleware(['notCustomer'])->group(function(){
+	Route::get('', [adminUsers::class, 'index'])->middleware(['operator']);
+	Route::get('/edit/{id}', [adminUsers::class, 'edit']);
+	Route::post('/edit/{id}', [adminUsers::class, 'update']);
+	Route::post('/delete/{id}', [adminUsers::class, 'delete']);
+});
+
+Route::prefix('/admin/orders')->middleware(['notCustomer'])->group(function(){
+	Route::get('', [adminOrders::class, 'index']);
+});
+
+
+Route::prefix("profile")->group(function(){
+	Route::get('', [ProfileController::class, 'index'])->name('profile');
+	Route::post('edit/{id}', [ProfileController::class, 'update']);
+});
+
+//Route::prefix("/baskets")->group(function(){
+//	Route::get('', [BasketsController::class, 'index']);
+//	Route::post('plus/{id}', [BasketsController::class, 'plus']);
+//	Route::post('minus/{id}', [BasketsController::class, 'minus']);
+//	Route::post('/add/{id}', [BasketsController::class, 'add']);
+//	Route::get('/delete/{id}', [BasketsController::class, 'delete']);
+//});
+//Route::post('products/baskets/add/{id}', [BasketsController::class, 'addFromCard']);
+
+Route::prefix("/orders")->group(function(){
+	Route::post('add', [OrdersController::class, 'add']);
+    Route::get('', [OrdersController::class, 'index']);
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

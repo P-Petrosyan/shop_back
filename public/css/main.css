@@ -1,0 +1,235 @@
+body {
+    margin: 0;
+    font-family: Poppins,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif;
+    background-color: #cbd5e0;
+    font-weight: 400;
+    line-height: 1.625;
+    color: #6c757d;
+    text-align: left;
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+.wrapper {
+    align-items: stretch;
+    display: flex;
+    width: 100%;
+}
+.sidebar {
+    max-width: 260px;
+    transition: margin-left .35s ease-in-out,left .35s ease-in-out,margin-right .35s ease-in-out,right .35s ease-in-out;
+    direction: ltr;
+    background: #3b3954;
+}
+
+.profile-main{
+    height: 300px;
+    width: 100%;
+    background: #4dc0b5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.proile-image{
+    width: 60%;
+}
+.proile-image img{
+    width: 100%;
+    border-radius: 40px;
+}
+.profile-infos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.profile-infos h5 {
+    color: #3B3954;
+}
+
+.profile-infos input{
+    border:none;
+    background-image:none;
+    background-color:transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    outline: none;
+    color: #3B3954;
+}
+
+.main {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    min-width: 0;
+    /*transition: margin-left .35s ease-in-out,left .35s ease-in-out,margin-right .35s ease-in-out,right .35s ease-in-out;*/
+    flex-direction: column;
+}
+/*.body-wrapper{*/
+    /*display: flex;*/
+    /*width: 100%;*/
+/*}*/
+
+.navbar-bg {
+    background: #ecf4ff;
+}
+.navbar {
+    /*border-bottom: 0;*/
+    box-shadow: 0 0 5rem 0 rgb(41 48 66 / 40%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /*padding: 0;*/
+    padding: 10px 1rem;
+    /*min-height: 14px;*/
+}
+.navbar .slidebar-toggle{
+    cursor: pointer;
+    color: #3B3954;
+
+}
+
+/*      hovers   */
+
+.slidebar-toggle:hover, form.search-form.card-div:hover,  .search-button:hover, #login:hover, #logout:hover{
+    opacity: 	.5 !important;
+    transition: .8s !important;
+    /*color: #4dc0b5;*/
+    box-shadow: 0 0 5rem 0 rgb(41 48 66 / 40%);
+}
+li a:hover {
+    opacity: 	.5;
+    transition: .8s;
+    color: #58dcd1;
+}
+
+/*      hovers   */
+form.search-form{
+    margin: 0  !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+form.search-form .input-group{
+    display: flex;
+    align-items: center;
+}
+form.search-form span{
+    margin-top: 11px;
+}
+form.search-form input{
+    border:none;
+    background-image:none;
+    background-color:transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    outline: none;
+    /*border-bottom: .5px solid #3B3954;*/
+    /*border-opacity: 40%;*/
+    /*border-top: .5px solid #3B3954;*/
+    /*box-shadow: none;*/
+    /*box-shadow: 0 0 5rem 0 rgb(41 48 66 / 40%);*/
+    border-radius: 10%;
+}
+input:checked{
+    border: none;
+}
+/*form.search-form .search-button:hover{*/
+    /*box-shadow: 0 0 5rem 0 rgb(41 48 66 / 40%);*/
+    /*transition: .8s;*/
+    /*opacity: 	.5;*/
+/*}*/
+
+.paginator .hidden {
+    display: none;
+}
+nav ul {
+    list-style-type: none;
+    text-transform: uppercase;
+}
+nav h4{
+    color: #74bacb;
+    margin-left: 40px;
+    cursor: default;
+}
+li a{
+    color: #697d92;
+    text-decoration: inherit;
+}
+li a:link {
+    text-decoration: none;
+}
+
+li .sub{
+    margin-left: 14px;
+}
+
+i.fas, i.fa{
+    color: #60727b;
+}
+
+
+.card-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    border: none;
+    color: #697d92;
+    background: none;
+    transition: .4s,
+    background-color .13s ease-in-out,
+    border-color .13s ease-in-out,
+    box-shadow .13s ease-in-out;
+}
+.card:hover {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+#sidebar > div {
+    width: 100%;
+    opacity: 0;
+
+    transition: .4s opacity ease-in-out;
+}
+#sidebar {
+    min-width: 0;
+    width: 0;
+    z-index: -1;
+    transition: .5s width ease-in-out
+}
+#sidebar.show {
+    min-width: 260px;
+    width: 260px;
+    z-index: 1;
+    transition: .5s width ease-out;
+}
+
+#sidebar.show > div {
+    opacity: 1;
+}
+
+
+/*#sidebar.hidden {*/
+/*!*max-width: 0;*!*/
+/*!*width: 0;*!*/
+/*!*transition: 3s width ease-in;*!*/
+/*min-width: 0;*/
+/*width: 0;*/
+/*transition: .5s width ease-in-out*/
+/*}*/
+
+
+.sidebar-content.display{
+width: 100%;
+/*opacity: 0;*/
+transition: 3s ;
+display: none;
+/*display: none;*/
+}
+
